@@ -1,0 +1,25 @@
+services:
+  # MkDocs service
+  thinkee-mkdocs:
+    container_name: thinkee-mkdocs
+    build:
+      context: ./../../
+      dockerfile: ./environment/docker/mkdocs/Dockerfile
+    tty: true
+    working_dir: /docs
+    volumes:
+      - ./../../:/docs
+    ports:
+      - "8000:8000"
+    depends_on:
+      - thinkee-kroki
+    command: mkdocs serve -f docs/mkdocs.yml --dev-addr 0.0.0.0:8000 --livereload
+
+  # Kroki service
+  thinkee-kroki:
+    container_name: thinkee-kroki
+    build:
+      context: ./../../
+      dockerfile: ./environment/docker/kroki/Dockerfile
+    ports:
+      - "8700:8000"
