@@ -1,0 +1,1 @@
+FROM yuzutech/kroki:latest

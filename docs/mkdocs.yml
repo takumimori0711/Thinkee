@@ -1,0 +1,27 @@
+site_name: Thinkee
+site_author: takumimori0711
+docs_dir: contents
+
+theme:
+  name: material
+  language: ja
+  favicon: assets/favicon.png
+  logo: assets/favicon.png
+  features:
+    - navigation.tabs
+    - navigation.top
+    - content.code.copy
+
+extra_css:
+  - assets/stylesheets/extra.css
+
+plugins:
+  - search
+  - kroki:
+      ServerURL: !ENV [KROKI_URL, 'http://thinkee-kroki:8000']
+      FileTypes:
+        - svg
+
+nav:
+  - ホーム: index.md
+  - サンプル: sample.md

@@ -1,0 +1,37 @@
+name: Build and Deploy MkDocs
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/deploy-pages.yml
+      - docs/**
+      - docs/mkdocs.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    services:
+      kroki:
+        image: yuzutech/kroki
+        ports:
+          - 8000:8000
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: pip install mkdocs-material mkdocs-kroki-plugin
+
+      - name: Build and deploy
+        env:
+          KROKI_URL: http://localhost:8000
+        run: mkdocs gh-deploy -f docs/mkdocs.yml --force
