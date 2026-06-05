@@ -1,0 +1,1417 @@
+
+<!doctype html>
+<html lang="ja" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="takumimori0711">
+      
+      
+      
+        <link rel="prev" href="../02_Basic_Design/">
+      
+      
+        <link rel="next" href="../04_Test_Design/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>詳細設計 - Thinkee</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#03" class="md-skip">
+          コンテンツにスキップ
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="ヘッダー">
+    <a href="../.." title="Thinkee" class="md-header__button md-logo" aria-label="Thinkee" data-md-component="logo">
+      
+  <img src="../../assets/favicon.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Thinkee
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              詳細設計
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="検索" placeholder="検索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="検索">
+        
+        <button type="reset" class="md-search__icon md-icon" title="クリア" aria-label="クリア" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            検索を初期化
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="タブ" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  ホーム
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../00_Tech_Stack/" class="md-tabs__link">
+          
+  
+  
+  設計書
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="ナビゲーション" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Thinkee" class="md-nav__button md-logo" aria-label="Thinkee" data-md-component="logo">
+      
+  <img src="../../assets/favicon.png" alt="logo">
+
+    </a>
+    Thinkee
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ホーム
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    設計書
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    設計書
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00_Tech_Stack/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    技術選定
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01_Requirements/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    要件定義
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02_Basic_Design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    基本設計
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    詳細設計
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    詳細設計
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. データモデル
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. データモデル">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-1-supabasepostgresql" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1-1. Supabase（PostgreSQL）テーブル定義
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1-1. Supabase（PostgreSQL）テーブル定義">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#posts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        posts テーブル
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-2-dart-entityfreezed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1-2. Dart Entity（freezed 使用）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-repository" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Repository インターフェース定義
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Repository インターフェース定義">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#postrepository" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PostRepository
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-riverpod" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Riverpod 状態管理設計
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Riverpod 状態管理設計">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#3-1-provider" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3-1. Provider 一覧
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-2-postlistnotifier" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3-2. PostListNotifier
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-3-reflectionnotifier" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3-3. ReflectionNotifier
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3-4. 状態フロー図
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. モジュール・クラス設計（投稿機能を例に）
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-rls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. セキュリティ・RLS 設計
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. セキュリティ・RLS 設計">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#row-level-security" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Row Level Security ポリシー
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-csv" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. CSV 出力・メール送信設計
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. CSV 出力・メール送信設計">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        処理フロー
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#csv" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CSV フォーマット
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-tbd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. 要確認事項（TBD）
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04_Test_Design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    テスト設計
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. データモデル
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. データモデル">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-1-supabasepostgresql" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1-1. Supabase（PostgreSQL）テーブル定義
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1-1. Supabase（PostgreSQL）テーブル定義">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#posts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        posts テーブル
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-2-dart-entityfreezed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1-2. Dart Entity（freezed 使用）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-repository" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Repository インターフェース定義
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Repository インターフェース定義">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#postrepository" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PostRepository
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-riverpod" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Riverpod 状態管理設計
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Riverpod 状態管理設計">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#3-1-provider" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3-1. Provider 一覧
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-2-postlistnotifier" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3-2. PostListNotifier
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-3-reflectionnotifier" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3-3. ReflectionNotifier
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3-4. 状態フロー図
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. モジュール・クラス設計（投稿機能を例に）
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-rls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. セキュリティ・RLS 設計
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. セキュリティ・RLS 設計">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#row-level-security" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Row Level Security ポリシー
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-csv" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. CSV 出力・メール送信設計
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. CSV 出力・メール送信設計">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        処理フロー
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#csv" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CSV フォーマット
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-tbd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. 要確認事項（TBD）
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="03">03. 詳細設計書（内部設計）</h1>
+<h2 id="1">1. データモデル</h2>
+<h3 id="1-1-supabasepostgresql">1-1. Supabase（PostgreSQL）テーブル定義</h3>
+<h4 id="posts"><code>posts</code> テーブル</h4>
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">public</span><span class="p">.</span><span class="n">posts</span><span class="w"> </span><span class="p">(</span>
+<span class="w">  </span><span class="n">id</span><span class="w">          </span><span class="n">UUID</span><span class="w">        </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="n">gen_random_uuid</span><span class="p">(),</span>
+<span class="w">  </span><span class="n">user_id</span><span class="w">     </span><span class="n">UUID</span><span class="w">        </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">auth</span><span class="p">.</span><span class="n">users</span><span class="p">(</span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="k">DELETE</span><span class="w"> </span><span class="k">CASCADE</span><span class="p">,</span>
+<span class="w">  </span><span class="n">content</span><span class="w">        </span><span class="nb">TEXT</span><span class="w">        </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">  </span><span class="n">is_favorited</span><span class="w">   </span><span class="nb">BOOLEAN</span><span class="w">     </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">false</span><span class="p">,</span>
+<span class="w">  </span><span class="n">quoted_post_id</span><span class="w"> </span><span class="n">UUID</span><span class="w">        </span><span class="k">REFERENCES</span><span class="w"> </span><span class="k">public</span><span class="p">.</span><span class="n">posts</span><span class="p">(</span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="k">DELETE</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">  </span><span class="n">created_at</span><span class="w">     </span><span class="n">TIMESTAMPTZ</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="n">now</span><span class="p">(),</span>
+<span class="w">  </span><span class="n">updated_at</span><span class="w">     </span><span class="n">TIMESTAMPTZ</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="n">now</span><span class="p">()</span>
+<span class="p">);</span>
+
+<span class="c1">-- updated_at を自動更新するトリガー</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">OR</span><span class="w"> </span><span class="k">REPLACE</span><span class="w"> </span><span class="k">FUNCTION</span><span class="w"> </span><span class="n">update_updated_at</span><span class="p">()</span>
+<span class="k">RETURNS</span><span class="w"> </span><span class="k">TRIGGER</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="err">$$</span>
+<span class="k">BEGIN</span>
+<span class="w">  </span><span class="k">NEW</span><span class="p">.</span><span class="n">updated_at</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">now</span><span class="p">();</span>
+<span class="w">  </span><span class="k">RETURN</span><span class="w"> </span><span class="k">NEW</span><span class="p">;</span>
+<span class="k">END</span><span class="p">;</span>
+<span class="err">$$</span><span class="w"> </span><span class="k">LANGUAGE</span><span class="w"> </span><span class="n">plpgsql</span><span class="p">;</span>
+
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TRIGGER</span><span class="w"> </span><span class="n">posts_updated_at</span>
+<span class="w">  </span><span class="k">BEFORE</span><span class="w"> </span><span class="k">UPDATE</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="k">public</span><span class="p">.</span><span class="n">posts</span>
+<span class="w">  </span><span class="k">FOR</span><span class="w"> </span><span class="k">EACH</span><span class="w"> </span><span class="k">ROW</span><span class="w"> </span><span class="k">EXECUTE</span><span class="w"> </span><span class="k">FUNCTION</span><span class="w"> </span><span class="n">update_updated_at</span><span class="p">();</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>カラム</th>
+<th>型</th>
+<th>制約</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>UUID</td>
+<td>PK, DEFAULT</td>
+<td>投稿ID</td>
+</tr>
+<tr>
+<td><code>user_id</code></td>
+<td>UUID</td>
+<td>NOT NULL, FK</td>
+<td>投稿者（auth.users.id）</td>
+</tr>
+<tr>
+<td><code>content</code></td>
+<td>TEXT</td>
+<td>NOT NULL</td>
+<td>投稿テキスト</td>
+</tr>
+<tr>
+<td><code>is_favorited</code></td>
+<td>BOOLEAN</td>
+<td>NOT NULL, DEFAULT false</td>
+<td>お気に入りフラグ</td>
+</tr>
+<tr>
+<td><code>quoted_post_id</code></td>
+<td>UUID</td>
+<td>FK, NULL 許容</td>
+<td>引用元の投稿ID。引用元が削除されると NULL になる</td>
+</tr>
+<tr>
+<td><code>created_at</code></td>
+<td>TIMESTAMPTZ</td>
+<td>NOT NULL</td>
+<td>作成日時</td>
+</tr>
+<tr>
+<td><code>updated_at</code></td>
+<td>TIMESTAMPTZ</td>
+<td>NOT NULL</td>
+<td>更新日時（自動更新）</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Note:</strong> ユーザープロフィール情報（メールアドレス等）は Supabase Auth の <code>auth.users</code> テーブルが管理するため、アプリ側に <code>users</code> テーブルは作成しない。</p>
+</blockquote>
+<hr />
+<h3 id="1-2-dart-entityfreezed">1-2. Dart Entity（<code>freezed</code> 使用）</h3>
+<div class="highlight"><pre><span></span><code><span class="c1">// features/post/domain/post.dart</span>
+<span class="nd">@freezed</span>
+<span class="kd">class</span><span class="w"> </span><span class="nc">Post</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">_$Post</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="kd">factory</span><span class="w"> </span><span class="n">Post</span><span class="p">({</span>
+<span class="w">    </span><span class="kd">required</span><span class="w"> </span><span class="kt">String</span><span class="w"> </span><span class="n">id</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">required</span><span class="w"> </span><span class="kt">String</span><span class="w"> </span><span class="n">userId</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">required</span><span class="w"> </span><span class="kt">String</span><span class="w"> </span><span class="n">content</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">required</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">isFavorited</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">String</span><span class="o">?</span><span class="w"> </span><span class="n">quotedPostId</span><span class="p">,</span>
+<span class="w">    </span><span class="n">Post</span><span class="o">?</span><span class="w"> </span><span class="n">quotedPost</span><span class="p">,</span><span class="w">         </span><span class="c1">// JOIN で取得。引用元が削除済みの場合は null</span>
+<span class="w">    </span><span class="kd">required</span><span class="w"> </span><span class="n">DateTime</span><span class="w"> </span><span class="n">createdAt</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">required</span><span class="w"> </span><span class="n">DateTime</span><span class="w"> </span><span class="n">updatedAt</span><span class="p">,</span>
+<span class="w">  </span><span class="p">})</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_Post</span><span class="p">;</span>
+
+<span class="w">  </span><span class="kd">factory</span><span class="w"> </span><span class="n">Post</span><span class="p">.</span><span class="n">fromJson</span><span class="p">(</span><span class="n">Map</span><span class="o">&lt;</span><span class="kt">String</span><span class="p">,</span><span class="w"> </span><span class="kt">dynamic</span><span class="o">&gt;</span><span class="w"> </span><span class="n">json</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">_$PostFromJson</span><span class="p">(</span><span class="n">json</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<hr />
+<h2 id="2-repository">2. Repository インターフェース定義</h2>
+<h3 id="postrepository">PostRepository</h3>
+<div class="highlight"><pre><span></span><code><span class="c1">// features/post/domain/post_repository.dart</span>
+<span class="kd">abstract</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">PostRepository</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Post</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">fetchPosts</span><span class="p">({</span><span class="kd">required</span><span class="w"> </span><span class="kt">String</span><span class="w"> </span><span class="n">sortOrder</span><span class="p">});</span><span class="w"> </span><span class="c1">// &#39;asc&#39; or &#39;desc&#39;</span>
+<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Post</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">searchPosts</span><span class="p">({</span><span class="kd">required</span><span class="w"> </span><span class="kt">String</span><span class="w"> </span><span class="n">query</span><span class="p">});</span>
+<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Post</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">fetchRandomPosts</span><span class="p">({</span><span class="kd">required</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">count</span><span class="p">});</span>
+<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="n">Post</span><span class="o">&gt;</span><span class="w"> </span><span class="n">createPost</span><span class="p">({</span><span class="kd">required</span><span class="w"> </span><span class="kt">String</span><span class="w"> </span><span class="n">content</span><span class="p">});</span>
+<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="n">Post</span><span class="o">&gt;</span><span class="w"> </span><span class="n">createQuote</span><span class="p">({</span><span class="kd">required</span><span class="w"> </span><span class="kt">String</span><span class="w"> </span><span class="n">content</span><span class="p">,</span><span class="w"> </span><span class="kd">required</span><span class="w"> </span><span class="kt">String</span><span class="w"> </span><span class="n">quotedPostId</span><span class="p">});</span>
+<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="n">Post</span><span class="o">&gt;</span><span class="w"> </span><span class="n">updatePost</span><span class="p">({</span><span class="kd">required</span><span class="w"> </span><span class="kt">String</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="kd">required</span><span class="w"> </span><span class="kt">String</span><span class="w"> </span><span class="n">content</span><span class="p">});</span>
+<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="n">Post</span><span class="o">&gt;</span><span class="w"> </span><span class="n">toggleFavorite</span><span class="p">({</span><span class="kd">required</span><span class="w"> </span><span class="kt">String</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="kd">required</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">value</span><span class="p">});</span>
+<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">deletePost</span><span class="p">({</span><span class="kd">required</span><span class="w"> </span><span class="kt">String</span><span class="w"> </span><span class="n">id</span><span class="p">});</span>
+<span class="p">}</span>
+</code></pre></div>
+<hr />
+<h2 id="3-riverpod">3. Riverpod 状態管理設計</h2>
+<h3 id="3-1-provider">3-1. Provider 一覧</h3>
+<table>
+<thead>
+<tr>
+<th>Provider名</th>
+<th>種別</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>supabaseClientProvider</code></td>
+<td><code>Provider</code></td>
+<td>Supabase クライアントのシングルトン</td>
+</tr>
+<tr>
+<td><code>authStateProvider</code></td>
+<td><code>StreamProvider</code></td>
+<td>ログイン状態のストリーム</td>
+</tr>
+<tr>
+<td><code>postRepositoryProvider</code></td>
+<td><code>Provider</code></td>
+<td>PostRepository の実装インスタンス</td>
+</tr>
+<tr>
+<td><code>postListProvider</code></td>
+<td><code>AsyncNotifierProvider</code></td>
+<td>投稿一覧・CRUD 操作・検索・並べ替えを管理</td>
+</tr>
+</tbody>
+</table>
+<p>| <code>reflectionProvider</code> | <code>AsyncNotifierProvider</code> | ランダム 3 件の取得・1日1回更新ロジックを管理 |</p>
+<h3 id="3-2-postlistnotifier">3-2. PostListNotifier</h3>
+<div class="highlight"><pre><span></span><code><span class="c1">// features/post/presentation/post_list_provider.dart</span>
+<span class="nd">@riverpod</span>
+<span class="kd">class</span><span class="w"> </span><span class="nc">PostListNotifier</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">_$PostListNotifier</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Post</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">build</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">ref</span><span class="p">.</span><span class="n">read</span><span class="p">(</span><span class="n">postRepositoryProvider</span><span class="p">).</span><span class="n">fetchPosts</span><span class="p">(</span><span class="nl">sortOrder:</span><span class="w"> </span><span class="s1">&#39;desc&#39;</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">create</span><span class="p">(</span><span class="kt">String</span><span class="w"> </span><span class="n">content</span><span class="p">)</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">createQuote</span><span class="p">(</span><span class="kt">String</span><span class="w"> </span><span class="n">content</span><span class="p">,</span><span class="w"> </span><span class="kt">String</span><span class="w"> </span><span class="n">quotedPostId</span><span class="p">)</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">update</span><span class="p">(</span><span class="kt">String</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="kt">String</span><span class="w"> </span><span class="n">content</span><span class="p">)</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">toggleFavorite</span><span class="p">(</span><span class="kt">String</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">value</span><span class="p">)</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">delete</span><span class="p">(</span><span class="kt">String</span><span class="w"> </span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">changeSort</span><span class="p">(</span><span class="kt">String</span><span class="w"> </span><span class="n">order</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">search</span><span class="p">(</span><span class="kt">String</span><span class="w"> </span><span class="n">query</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">filterFavorites</span><span class="p">(</span><span class="kt">bool</span><span class="w"> </span><span class="n">onlyFavorites</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="3-3-reflectionnotifier">3-3. ReflectionNotifier</h3>
+<div class="highlight"><pre><span></span><code><span class="c1">// features/reflection/presentation/reflection_provider.dart</span>
+<span class="nd">@riverpod</span>
+<span class="kd">class</span><span class="w"> </span><span class="nc">ReflectionNotifier</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">_$ReflectionNotifier</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Post</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">build</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">prefs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">SharedPreferences</span><span class="p">.</span><span class="n">getInstance</span><span class="p">();</span>
+<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">lastUpdated</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">prefs</span><span class="p">.</span><span class="n">getString</span><span class="p">(</span><span class="s1">&#39;reflection_last_updated&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">today</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DateFormat</span><span class="p">(</span><span class="s1">&#39;yyyy-MM-dd&#39;</span><span class="p">).</span><span class="n">format</span><span class="p">(</span><span class="n">DateTime</span><span class="p">.</span><span class="n">now</span><span class="p">());</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">lastUpdated</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">today</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="c1">// キャッシュから復元（TBD: SharedPreferencesに保存した投稿IDから再取得）</span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="n">_loadCached</span><span class="p">(</span><span class="n">prefs</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">_refresh</span><span class="p">(</span><span class="n">prefs</span><span class="p">,</span><span class="w"> </span><span class="n">today</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Post</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">_refresh</span><span class="p">(</span><span class="n">SharedPreferences</span><span class="w"> </span><span class="n">prefs</span><span class="p">,</span><span class="w"> </span><span class="kt">String</span><span class="w"> </span><span class="n">today</span><span class="p">)</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">posts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">ref</span><span class="p">.</span><span class="n">read</span><span class="p">(</span><span class="n">postRepositoryProvider</span><span class="p">).</span><span class="n">fetchRandomPosts</span><span class="p">(</span><span class="nl">count:</span><span class="w"> </span><span class="m">3</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="n">prefs</span><span class="p">.</span><span class="n">setString</span><span class="p">(</span><span class="s1">&#39;reflection_last_updated&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">today</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// 取得した投稿IDをキャッシュ保存（TBD）</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">posts</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="3-4">3-4. 状態フロー図</h3>
+<pre class="mermaid"><code>stateDiagram-v2
+    [*] --&gt; Loading : アプリ起動
+
+    Loading --&gt; Unauthenticated : 未ログイン
+    Loading --&gt; Authenticated : ログイン済み
+
+    Unauthenticated --&gt; Authenticated : ログイン成功
+    Authenticated --&gt; Unauthenticated : ログアウト
+
+    state Authenticated {
+        [*] --&gt; PostList
+        PostList --&gt; PostList : つぶやき作成 / 編集 / 削除 / 検索 / 並べ替え
+        PostList --&gt; Reflection : タブ切替
+        Reflection --&gt; Reflection : つぶやき編集
+        Reflection --&gt; Account : タブ切替
+        Account --&gt; Account : CSV送信 / アカウント削除
+    }</code></pre>
+<hr />
+<h2 id="4">4. モジュール・クラス設計（投稿機能を例に）</h2>
+<pre class="mermaid"><code>classDiagram
+    class PostListScreen {
+        +build() Widget
+    }
+    class PostListNotifier {
+        +build() Future~List~Post~~
+        +create(content) Future~void~
+        +update(id, content) Future~void~
+        +delete(id) Future~void~
+        +search(query) void
+        +changeSort(order) void
+    }
+    class PostRepository {
+        &lt;&lt;interface&gt;&gt;
+        +fetchPosts(sortOrder) Future~List~Post~~
+        +searchPosts(query) Future~List~Post~~
+        +createPost(content) Future~Post~
+        +updatePost(id, content) Future~Post~
+        +deletePost(id) Future~void~
+    }
+    class SupabasePostRepository {
+        -SupabaseClient client
+        +fetchPosts(sortOrder) Future~List~Post~~
+        +createPost(content) Future~Post~
+    }
+    class Post {
+        +String id
+        +String userId
+        +String content
+        +DateTime createdAt
+        +DateTime updatedAt
+    }
+
+    PostListScreen --&gt; PostListNotifier : ref.watch
+    PostListNotifier --&gt; PostRepository : 依存（interface）
+    SupabasePostRepository ..|&gt; PostRepository : 実装
+    PostRepository --&gt; Post : 返却</code></pre>
+<hr />
+<h2 id="5-rls">5. セキュリティ・RLS 設計</h2>
+<h3 id="row-level-security">Row Level Security ポリシー</h3>
+<div class="highlight"><pre><span></span><code><span class="c1">-- posts テーブル RLS</span>
+<span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">public</span><span class="p">.</span><span class="n">posts</span><span class="w"> </span><span class="n">ENABLE</span><span class="w"> </span><span class="k">ROW</span><span class="w"> </span><span class="k">LEVEL</span><span class="w"> </span><span class="k">SECURITY</span><span class="p">;</span>
+
+<span class="c1">-- SELECT: 自分の投稿のみ取得可能</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="n">POLICY</span><span class="w"> </span><span class="ss">&quot;posts_select_own&quot;</span>
+<span class="w">  </span><span class="k">ON</span><span class="w"> </span><span class="k">public</span><span class="p">.</span><span class="n">posts</span><span class="w"> </span><span class="k">FOR</span><span class="w"> </span><span class="k">SELECT</span>
+<span class="w">  </span><span class="k">USING</span><span class="w"> </span><span class="p">(</span><span class="n">auth</span><span class="p">.</span><span class="n">uid</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">user_id</span><span class="p">);</span>
+
+<span class="c1">-- INSERT: 自分の user_id でのみ挿入可能</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="n">POLICY</span><span class="w"> </span><span class="ss">&quot;posts_insert_own&quot;</span>
+<span class="w">  </span><span class="k">ON</span><span class="w"> </span><span class="k">public</span><span class="p">.</span><span class="n">posts</span><span class="w"> </span><span class="k">FOR</span><span class="w"> </span><span class="k">INSERT</span>
+<span class="w">  </span><span class="k">WITH</span><span class="w"> </span><span class="k">CHECK</span><span class="w"> </span><span class="p">(</span><span class="n">auth</span><span class="p">.</span><span class="n">uid</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">user_id</span><span class="p">);</span>
+
+<span class="c1">-- UPDATE: 自分の投稿のみ更新可能</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="n">POLICY</span><span class="w"> </span><span class="ss">&quot;posts_update_own&quot;</span>
+<span class="w">  </span><span class="k">ON</span><span class="w"> </span><span class="k">public</span><span class="p">.</span><span class="n">posts</span><span class="w"> </span><span class="k">FOR</span><span class="w"> </span><span class="k">UPDATE</span>
+<span class="w">  </span><span class="k">USING</span><span class="w"> </span><span class="p">(</span><span class="n">auth</span><span class="p">.</span><span class="n">uid</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">user_id</span><span class="p">);</span>
+
+<span class="c1">-- DELETE: 自分の投稿のみ削除可能</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="n">POLICY</span><span class="w"> </span><span class="ss">&quot;posts_delete_own&quot;</span>
+<span class="w">  </span><span class="k">ON</span><span class="w"> </span><span class="k">public</span><span class="p">.</span><span class="n">posts</span><span class="w"> </span><span class="k">FOR</span><span class="w"> </span><span class="k">DELETE</span>
+<span class="w">  </span><span class="k">USING</span><span class="w"> </span><span class="p">(</span><span class="n">auth</span><span class="p">.</span><span class="n">uid</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">user_id</span><span class="p">);</span>
+</code></pre></div>
+<hr />
+<h2 id="6-csv">6. CSV 出力・メール送信設計</h2>
+<h3 id="_1">処理フロー</h3>
+<ol>
+<li>ユーザーがアカウントタブで「CSV を送信」をタップ</li>
+<li>Flutter アプリが Supabase Edge Function を呼び出す（認証済みトークン付き）</li>
+<li>Edge Function が <code>auth.uid()</code> を元に posts テーブルから全件取得</li>
+<li>Edge Function が CSV を生成し、<strong>Resend</strong> を使用してユーザーのメールアドレスに送信</li>
+</ol>
+<h3 id="csv">CSV フォーマット</h3>
+<div class="highlight"><pre><span></span><code>id,content,created_at,updated_at
+&quot;uuid-1&quot;,&quot;考えたこと1&quot;,&quot;2026-04-01T10:00:00Z&quot;,&quot;2026-04-01T10:00:00Z&quot;
+&quot;uuid-2&quot;,&quot;考えたこと2&quot;,&quot;2026-04-02T09:00:00Z&quot;,&quot;2026-04-02T09:00:00Z&quot;
+</code></pre></div>
+<hr />
+<h2 id="7-tbd">7. 要確認事項（TBD）</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>項目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>T-1</td>
+<td>振り返りキャッシュ方式</td>
+<td>再起動後も同日の 3 件を保持するための SharedPreferences への保存形式（投稿 ID リスト保存案）</td>
+</tr>
+<tr>
+<td>T-2</td>
+<td>ランダム取得の SQL</td>
+<td><code>ORDER BY RANDOM()</code> でパフォーマンスが問題になる件数か確認</td>
+</tr>
+<tr>
+<td>T-3</td>
+<td>削除時の振り返りへの影響</td>
+<td>振り返り表示中の投稿が削除された場合の挙動</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  ページトップへ戻る
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.top", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u30b3\u30d4\u30fc\u3057\u307e\u3057\u305f", "clipboard.copy": "\u30af\u30ea\u30c3\u30d7\u30dc\u30fc\u30c9\u3078\u30b3\u30d4\u30fc", "search.result.more.one": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3082\u30461\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.more.other": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3042\u3068#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.none": "\u4f55\u3082\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3067\u3057\u305f", "search.result.one": "1\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.other": "#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.placeholder": "\u691c\u7d22\u30ad\u30fc\u30ef\u30fc\u30c9\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044", "search.result.term.missing": "\u691c\u7d22\u306b\u542b\u307e\u308c\u306a\u3044", "select.version": "\u30d0\u30fc\u30b8\u30e7\u30f3\u5207\u308a\u66ff\u3048"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+      
+    
+  </body>
+</html>

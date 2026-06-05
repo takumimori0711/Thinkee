@@ -1,0 +1,1413 @@
+
+<!doctype html>
+<html lang="ja" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="takumimori0711">
+      
+      
+      
+        <link rel="prev" href="../00_Tech_Stack/">
+      
+      
+        <link rel="next" href="../02_Basic_Design/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>要件定義 - Thinkee</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#01" class="md-skip">
+          コンテンツにスキップ
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="ヘッダー">
+    <a href="../.." title="Thinkee" class="md-header__button md-logo" aria-label="Thinkee" data-md-component="logo">
+      
+  <img src="../../assets/favicon.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Thinkee
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              要件定義
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="検索" placeholder="検索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="検索">
+        
+        <button type="reset" class="md-search__icon md-icon" title="クリア" aria-label="クリア" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            検索を初期化
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="タブ" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  ホーム
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../00_Tech_Stack/" class="md-tabs__link">
+          
+  
+  
+  設計書
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="ナビゲーション" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Thinkee" class="md-nav__button md-logo" aria-label="Thinkee" data-md-component="logo">
+      
+  <img src="../../assets/favicon.png" alt="logo">
+
+    </a>
+    Thinkee
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ホーム
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    設計書
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    設計書
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00_Tech_Stack/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    技術選定
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    要件定義
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    要件定義
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. アプリ概要
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. コアコンセプトと設計哲学
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. コアコンセプトと設計哲学">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#2-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2-1. 思考の外在化
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2-2. 過去の自分を「他者」として出会い直す
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2-3. ランダム性の意図
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-4-140" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2-4. 制約としての 140 文字とリズム
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2-5. 引用という「時間を超えた対話」
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2-6. 完全にプライベートである理由
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. ターゲット・ペルソナ
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 機能要件
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. 機能要件">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#4-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4-1. 認証機能
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4-2. つぶやくタブ機能
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4-3. 出会うタブ機能
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4-4. アカウントタブ機能
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 非機能要件
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. 主要ユースケース
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. 主要ユースケース">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#uc-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UC-1: つぶやく
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uc-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UC-2: つぶやきを編集する
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uc-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UC-3: 過去の自分と出会う
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uc-4-csv" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UC-4: CSV をメールで受け取る
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02_Basic_Design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    基本設計
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_Detail_Design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    詳細設計
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04_Test_Design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    テスト設計
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. アプリ概要
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. コアコンセプトと設計哲学
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. コアコンセプトと設計哲学">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#2-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2-1. 思考の外在化
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2-2. 過去の自分を「他者」として出会い直す
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2-3. ランダム性の意図
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-4-140" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2-4. 制約としての 140 文字とリズム
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2-5. 引用という「時間を超えた対話」
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2-6. 完全にプライベートである理由
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. ターゲット・ペルソナ
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 機能要件
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. 機能要件">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#4-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4-1. 認証機能
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4-2. つぶやくタブ機能
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4-3. 出会うタブ機能
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4-4. アカウントタブ機能
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 非機能要件
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. 主要ユースケース
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. 主要ユースケース">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#uc-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UC-1: つぶやく
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uc-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UC-2: つぶやきを編集する
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uc-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UC-3: 過去の自分と出会う
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uc-4-csv" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UC-4: CSV をメールで受け取る
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="01">01. 要件定義書</h1>
+<h2 id="1">1. アプリ概要</h2>
+<p><strong>Thinkee</strong> は、頭の中を「吐き出す」ことと「過去の自分と出会い直す」ことを繰り返すことで、思考を育てていく支援アプリである。<br />
+SNS ではない。他者への発信を目的とせず、自分の思考との対話だけに特化する。</p>
+<hr />
+<h2 id="2">2. コアコンセプトと設計哲学</h2>
+<h3 id="2-1">2-1. 思考の外在化</h3>
+<p>人は一日に多くのことを考えるが、そのほとんどは消えていく。Thinkee は「消えかける思考の断片」を書き留める場所である。140文字という制約が書き始める敷居を下げる。整えなくていい。まず吐き出す。</p>
+<h3 id="2-2">2-2. 過去の自分を「他者」として出会い直す</h3>
+<p>書いたものを自分で読み返すとき、人は無意識に記憶を補完し、当時の文脈を思い出そうとする。しかし「出会う」タブでは、過去のつぶやきがランダムに届く。ユーザーが能動的に選ぶのではなく、届く。</p>
+<p>この「届く」という非対称性が重要である。自分が書いたにもかかわらず、どこか他者からのメッセージのように感じられる。今の自分の思考の外側から、宛先を間違えたような何かがやってくる。その誤配こそが、思考を揺さぶる。</p>
+<blockquote>
+<p>「あー、そんなこと考えてたんだ」<br />
+「今なら別の考えになるな」<br />
+「これ、今も変わっていないな」</p>
+</blockquote>
+<p>その驚きや揺さぶりこそが、このアプリが提供したい中核体験である。</p>
+<h3 id="2-3">2-3. ランダム性の意図</h3>
+<p>ユーザー自身が過去のつぶやきを選べる設計にしなかったのには理由がある。自分で選べば、共感できる・安心できる思考ばかりを選びがちになる。選べないことで初めて、忘れていた自分・驚く自分・反発する自分に出会える。</p>
+<p>ランダムに「届く」ことが重要なのは、それが今の自分の意図の外側から来るからだ。意図の外側からやってくるものだけが、今の思考に本当の揺さぶりをかけられる。</p>
+<h3 id="2-4-140">2-4. 制約としての 140 文字とリズム</h3>
+<p>140文字は、書き切れる量だ。書いて、投稿して、また書く。このリズムが重要で、ひとつの投稿はそれ自体が小さな達成である。小さな達成を積み重ねることで、ひとつながりの思考が成立していく。</p>
+<p>長く書けば、思考は整理されすぎる。整理されすぎた思考は、後で読んだときに「当然そう思うはず」という感覚しか生まない。140文字という制約は、まだ輪郭が定まっていない思考の断片をそのまま保存するために機能する。書ききれなければ、続きを新しいカードに書けばいい。</p>
+<h3 id="2-5">2-5. 引用という「時間を超えた対話」</h3>
+<p>過去のつぶやきを引用して新しいつぶやきを書く行為は、過去の自分への返答である。引用元と新しいカードが紐づくことで、単なるメモの蓄積ではなく「思考の変化の軌跡」が可視化される。</p>
+<h3 id="2-6">2-6. 完全にプライベートである理由</h3>
+<p>SNS は、承認やつながりを軸にした場所だ。誰かに見られ、反応される。それ自体は悪いことではないが、人との関係の中だけで生きるゲームになりやすい。Thinkee はそのゲームから距離を置く。</p>
+<p>誰にも見られない。何を書いてもいい。孤独に何かを考えていい。そういう場を大切にしたい。</p>
+<p>他者の目があるとき、人は思考を「見せるための形」に整える。その時点で、もっとも素朴で重要な部分が失われることが多い。Thinkee は徹底してプライベートな空間であることで、整えられていない思考がそのまま置かれる場所になることを目指す。孤独になれる場所を守ることが、このアプリの根幹にある。</p>
+<hr />
+<h2 id="3">3. ターゲット・ペルソナ</h2>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ターゲット年代・属性</td>
+<td>特定しない（全年代・全属性対象）</td>
+</tr>
+<tr>
+<td>コアバリュー</td>
+<td>「考えを吐き出す場所」と「過去の自分との対話」を手軽に提供する</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="4">4. 機能要件</h2>
+<h3 id="4-1">4-1. 認証機能</h3>
+<p>認証は <strong>Google OAuth のみ</strong> とする。メールアドレス・パスワード認証およびパスワードリセット機能は提供しない。</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>機能</th>
+<th>優先度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A-1</td>
+<td>Google アカウントによるサインイン / サインアップ</td>
+<td>必須</td>
+</tr>
+<tr>
+<td>A-2</td>
+<td>ログアウト</td>
+<td>必須</td>
+</tr>
+<tr>
+<td>A-3</td>
+<td>ログイン状態の永続化</td>
+<td>必須</td>
+</tr>
+</tbody>
+</table>
+<h3 id="4-2">4-2. つぶやくタブ機能</h3>
+<p>頭の中にあるものをリズムよく吐き出す場所。短文をカードとして積み上げていく。</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>機能</th>
+<th>優先度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P-1</td>
+<td>テキスト投稿（カード形式）</td>
+<td>必須</td>
+</tr>
+<tr>
+<td>P-2</td>
+<td>投稿一覧表示（タイムライン形式）</td>
+<td>必須</td>
+</tr>
+<tr>
+<td>P-3</td>
+<td>投稿の並べ替え（新しい順 / 古い順）</td>
+<td>必須</td>
+</tr>
+<tr>
+<td>P-4</td>
+<td>キーワード検索</td>
+<td>必須</td>
+</tr>
+<tr>
+<td>P-5</td>
+<td>投稿の上書き編集（タップして編集）</td>
+<td>必須</td>
+</tr>
+<tr>
+<td>P-6</td>
+<td>投稿の削除</td>
+<td>必須</td>
+</tr>
+<tr>
+<td>P-7</td>
+<td>投稿の文字数制限（上限 140 文字）</td>
+<td>必須</td>
+</tr>
+<tr>
+<td>P-8</td>
+<td>投稿カードに投稿日時を表示。編集済みの場合は編集日時を小さく併記</td>
+<td>必須</td>
+</tr>
+<tr>
+<td>P-9</td>
+<td>投稿カードにお気に入りボタンを表示。タップでお気に入り登録 / 解除</td>
+<td>必須</td>
+</tr>
+<tr>
+<td>P-10</td>
+<td>お気に入りした投稿のみ表示するフィルタリング</td>
+<td>必須</td>
+</tr>
+<tr>
+<td>P-11</td>
+<td>投稿作成・編集画面に残り文字数を表示（例: 残り 42 文字）</td>
+<td>必須</td>
+</tr>
+<tr>
+<td>P-12</td>
+<td>つぶやきカードに引用ボタンを表示。タップで引用作成画面へ遷移</td>
+<td>必須</td>
+</tr>
+<tr>
+<td>P-13</td>
+<td>引用つぶやきは引用元カードを埋め込み表示した新しいカードとしてタイムラインに追加される</td>
+<td>必須</td>
+</tr>
+<tr>
+<td>P-14</td>
+<td>引用つぶやきの文字数制限は通常と同じ 140 文字（引用元テキストはカウントに含まない）</td>
+<td>必須</td>
+</tr>
+<tr>
+<td>P-15</td>
+<td>引用元のつぶやきが削除された場合、埋め込み部分に「削除されたつぶやき」と表示する</td>
+<td>必須</td>
+</tr>
+</tbody>
+</table>
+<h3 id="4-3">4-3. 出会うタブ機能</h3>
+<p>過去の自分が書いたつぶやきがランダムに届く。他者となった過去の自分の声が、今の思考に揺さぶりをかける。</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>機能</th>
+<th>優先度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>R-1</td>
+<td>過去の投稿からランダムに 3 件を表示</td>
+<td>必須</td>
+</tr>
+<tr>
+<td>R-2</td>
+<td>表示内容は 1 日 1 回更新される</td>
+<td>必須</td>
+</tr>
+<tr>
+<td>R-3</td>
+<td>表示された投稿の上書き編集（タップして編集）</td>
+<td>必須</td>
+</tr>
+<tr>
+<td>R-4</td>
+<td>投稿数が 3 件未満の場合は「投稿が少ないです」旨のメッセージのみ表示し、投稿カードは表示しない</td>
+<td>必須</td>
+</tr>
+<tr>
+<td>R-5</td>
+<td>振り返りで表示された投稿カードにもお気に入りボタンを表示</td>
+<td>必須</td>
+</tr>
+<tr>
+<td>R-6</td>
+<td>出会ったつぶやきを引用してその場で返答できる</td>
+<td>必須</td>
+</tr>
+</tbody>
+</table>
+<h3 id="4-4">4-4. アカウントタブ機能</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>機能</th>
+<th>優先度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AC-1</td>
+<td>ユーザー情報の確認（Google アカウント名 / メールアドレス等）</td>
+<td>必須</td>
+</tr>
+<tr>
+<td>AC-2</td>
+<td>ログアウト</td>
+<td>必須</td>
+</tr>
+<tr>
+<td>AC-3</td>
+<td>全投稿を CSV 形式でメール送信（Resend を使用）</td>
+<td>必須</td>
+</tr>
+<tr>
+<td>AC-4</td>
+<td>アカウント削除</td>
+<td>必須</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="5">5. 非機能要件</h2>
+<table>
+<thead>
+<tr>
+<th>区分</th>
+<th>要件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>パフォーマンス</td>
+<td>投稿一覧は無限スクロールまたはページネーションで、スムーズにスクロールできること</td>
+</tr>
+<tr>
+<td>セキュリティ</td>
+<td>他ユーザーのデータにはアクセスできないこと（RLS による制御）</td>
+</tr>
+<tr>
+<td>オフライン</td>
+<td>ネットワーク接続がない場合はアプリを起動・利用できない。接続エラー画面を表示し、操作を受け付けない</td>
+</tr>
+<tr>
+<td>プラットフォーム</td>
+<td>iOS・Android 両対応</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="6">6. 主要ユースケース</h2>
+<h3 id="uc-1">UC-1: つぶやく</h3>
+<pre class="mermaid"><code>sequenceDiagram
+    actor User
+    User-&gt;&gt;つぶやくタブ: FABボタンをタップ
+    つぶやくタブ-&gt;&gt;つぶやき作成画面: 遷移
+    User-&gt;&gt;つぶやき作成画面: テキストを入力して投稿
+    つぶやき作成画面-&gt;&gt;Supabase: INSERT into posts
+    Supabase--&gt;&gt;つぶやき作成画面: 成功レスポンス
+    つぶやき作成画面-&gt;&gt;つぶやくタブ: 一覧に新規つぶやきを反映して戻る</code></pre>
+<h3 id="uc-2">UC-2: つぶやきを編集する</h3>
+<pre class="mermaid"><code>sequenceDiagram
+    actor User
+    User-&gt;&gt;つぶやくタブ: つぶやきカードをタップ
+    つぶやくタブ-&gt;&gt;つぶやき編集画面: 遷移（既存内容を表示）
+    User-&gt;&gt;つぶやき編集画面: テキストを編集して保存
+    つぶやき編集画面-&gt;&gt;Supabase: UPDATE posts SET content, updated_at
+    Supabase--&gt;&gt;つぶやき編集画面: 成功レスポンス
+    つぶやき編集画面-&gt;&gt;つぶやくタブ: 一覧に編集内容を反映して戻る</code></pre>
+<h3 id="uc-3">UC-3: 過去の自分と出会う</h3>
+<pre class="mermaid"><code>sequenceDiagram
+    actor User
+    User-&gt;&gt;出会うタブ: タブを開く
+    出会うタブ-&gt;&gt;ローカル: 最終更新日時を確認
+    alt 当日未更新
+        出会うタブ-&gt;&gt;Supabase: ランダム3件を取得
+        Supabase--&gt;&gt;出会うタブ: 3件のつぶやきデータ
+        出会うタブ-&gt;&gt;ローカル: 更新日時を保存
+    end
+    出会うタブ-&gt;&gt;User: 3件のカードを表示</code></pre>
+<h3 id="uc-4-csv">UC-4: CSV をメールで受け取る</h3>
+<pre class="mermaid"><code>sequenceDiagram
+    actor User
+    User-&gt;&gt;アカウントタブ: 「CSVを送信」をタップ
+    アカウントタブ-&gt;&gt;Supabase Edge Function: CSV出力リクエスト
+    Supabase Edge Function-&gt;&gt;Supabase DB: 全投稿を取得
+    Supabase Edge Function-&gt;&gt;Supabase Edge Function: CSV生成
+    Supabase Edge Function-&gt;&gt;Resend: ユーザーのメールアドレスに送信
+    Resend--&gt;&gt;User: CSVファイル付きメール</code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  ページトップへ戻る
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.top", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u30b3\u30d4\u30fc\u3057\u307e\u3057\u305f", "clipboard.copy": "\u30af\u30ea\u30c3\u30d7\u30dc\u30fc\u30c9\u3078\u30b3\u30d4\u30fc", "search.result.more.one": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3082\u30461\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.more.other": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3042\u3068#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.none": "\u4f55\u3082\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3067\u3057\u305f", "search.result.one": "1\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.other": "#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.placeholder": "\u691c\u7d22\u30ad\u30fc\u30ef\u30fc\u30c9\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044", "search.result.term.missing": "\u691c\u7d22\u306b\u542b\u307e\u308c\u306a\u3044", "select.version": "\u30d0\u30fc\u30b8\u30e7\u30f3\u5207\u308a\u66ff\u3048"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+      
+    
+  </body>
+</html>
