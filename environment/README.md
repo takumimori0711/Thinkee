@@ -66,3 +66,7 @@ Actions の実行状況は GitHub リポジトリの **Actions** タブで確認
 ### 手動デプロイ
 
 GitHub リポジトリの **Actions > Build and Deploy MkDocs > Run workflow** から手動実行できる。
+
+### ドキュメントのリンク
+
+Pagesのリンクは[こちら](https://takumimori0711.github.io/Thinkee/)

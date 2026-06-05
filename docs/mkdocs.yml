@@ -12,16 +12,31 @@ theme:
     - navigation.top
     - content.code.copy
 
+nav:
+  - ホーム: index.md
+  - 設計書:
+      - 技術選定: design/00_Tech_Stack.md
+      - 要件定義: design/01_Requirements.md
+      - 基本設計: design/02_Basic_Design.md
+      - 詳細設計: design/03_Detail_Design.md
+      - テスト設計: design/04_Test_Design.md
+
+markdown_extensions:
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - def_list
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - md_in_html
+
+extra_javascript:
+  - https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js
+
 extra_css:
   - assets/stylesheets/extra.css
 
 plugins:
   - search
-  - kroki:
-      ServerURL: !ENV [KROKI_URL, 'http://thinkee-kroki:8000']
-      FileTypes:
-        - svg
-
-nav:
-  - ホーム: index.md
-  - サンプル: sample.md
